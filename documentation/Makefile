@@ -24,7 +24,7 @@
 MAINTAINER=carlavilla@FreeBSD.org
 
 # List of languages without book translations
-ARTICLEONLY_LANGS=	bn-bd da id ko tr
+ARTICLEONLY_LANGS=	bn-bd da id tr
 # List of languages without article translations
 BOOKONLY_LANGS=		mn
 
