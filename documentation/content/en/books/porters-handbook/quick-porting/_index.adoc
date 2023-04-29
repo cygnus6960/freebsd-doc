@@ -81,7 +81,7 @@ The minimal [.filename]#Makefile# would look something like this:
 PORTNAME=	oneko
 DISTVERSION=	1.1b
 CATEGORIES=	games
-MASTER_SITES=	ftp://ftp.cs.columbia.edu/archives/X11R5/contrib/
+MASTER_SITES=	ftp://ftp.rediris.es/sites/ftp.freebsd.org/pub/FreeBSD/
 
 MAINTAINER=	youremail@example.com
 COMMENT=	Cat chasing a mouse all over the screen
@@ -295,7 +295,7 @@ Add a short description of the program to the Description field of the PR (perha
 [NOTE]
 ====
 Giving a good description in the summary of the problem report makes the work of port committers and triagers a lot easier.
-The expected format for new ports is "[NEW PORT] _category/portname short description of the port_" for new ports.
+The expected format for new ports is "[NEW PORT] _category/portname short description of the port_".
 Using this scheme makes it easier and faster to begin the work of committing the new port.
 ====
 
@@ -308,20 +308,8 @@ To get a listing of _open_ port PRs, select _Open_ and _Ports & Packages_ in the
 After looking at the new port, we will reply if necessary, and commit it to the tree.
 The submitter's name will also be added to the list of extref:{contributors}[Additional FreeBSD Contributors, contrib-additional] and other files.
 
-It is also possible to submit ports using a man:shar[1] file.
-Using the previous example with the `oneko` port above.
-
-.Creating a [.filename]#.shar# for a New Port
-[[porting-submitting-shar]]
-[example]
+[IMPORTANT]
 ====
-go to the directory above where the port directory is located, and use `tar` to create the shar archive:
-
-[source,shell]
-....
-% cd ..
-% tar cf oneko.shar --format shar oneko
-....
+Previously it was possible to submit patches for new ports using a man:shar[1] file; this is no longer the case with the evolution of man:git[1].
+Committers no longer accept man:shar[1] files as their use is prone to mistake and does not add the relevant entry in the category's [.filename]#Makefile#.
 ====
-
-[.filename]#oneko.shar# can then be submitted in the same way as [.filename]#oneko.diff# above.

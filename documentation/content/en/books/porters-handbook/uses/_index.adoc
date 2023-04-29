@@ -1318,12 +1318,24 @@ Possible arguments: (none), `base`, `port`
 
 Uses ncurses, and causes some useful variables to be set.
 
-[[uses-ninja]]
-== `ninja`
+[[uses-nextcloud]]
+== `nextcloud`
 
 Possible arguments: (none)
 
-Uses ninja to build the port.
+Adds support for Nextcloud applications by adding a run time dependency on package:www/nextcloud[].
+
+[[uses-ninja]]
+== `ninja`
+
+Possible arguments: (none), `build`, `make` (default), `run`
+
+If `build` or `run` arguments are specify, it respectively adds a build or run
+time dependency on package:devel/ninja[].
+If `make` or no arguments are provided, use ninja to build the port instead of make.
+`make` implies `build`.
+If the variable `NINJA_DEFAULT` is set to `samurai`, then the depedencies are set
+on package:devel/samurai[] instead.
 
 [[uses-nodejs]]
 == `nodejs`

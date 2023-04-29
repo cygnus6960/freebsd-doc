@@ -1,5 +1,34 @@
 # Sort news by year, month and day
 [[news]]
+date= "2023-04-19"
+title = "January-March 2023 Status Report"
+description = "The <a href=\"https://www.freebsd.org/status/report-2023-01-2023-03/\">January to March 2023 Status Report</a> is now available with 25 entries."
+
+[[news]]
+date = "2023-04-11"
+title = "FreeBSD 13.2-RELEASE Available"
+description = "<a href=\"https://www.FreeBSD.org/releases/13.2R/announce/\">FreeBSD 13.2-RELEASE</a> is now available. Please be sure to check the <a href=\"https://www.FreeBSD.org/releases/13.2R/relnotes/\">Release Notes</a> and <a href=\"https://www.FreeBSD.org/releases/13.2R/errata/\">Release Errata</a> before installation for any late-breaking news and/or issues with 13.2. More information about FreeBSD releases can be found on the <a href=\"https://www.FreeBSD.org/releases/\">Release Information</a> page."
+
+[[news]]
+date = "2023-04-02"
+title = "FreeBSD 13.2-RC6 Available"
+description = "The sixth RC build for the FreeBSD 13.2 release cycle is now available. ISO images for the amd64, i386, powerpc, powerpc64, powerpc64le, powerpcspe, armv6, armv7, aarch64, and riscv64 architectures are <a href=\"https://lists.freebsd.org/archives/freebsd-snapshots/2023-April/000234.html\">available</a> on most of our <a href=\"https://docs.freebsd.org/en/books/handbook/mirrors/#mirrors-ftp\">FreeBSD mirror sites</a>."
+
+[[news]]
+date = "2023-03-27"
+title = "FreeBSD 13.2-RC5 Available"
+description = "The fifth RC build for the FreeBSD 13.2 release cycle is now available. ISO images for the amd64, i386, powerpc, powerpc64, powerpc64le, powerpcspe, armv6, armv7, aarch64, and riscv64 architectures are <a href=\"https://lists.freebsd.org/archives/freebsd-snapshots/2023-March/000230.html\">available</a> on most of our <a href=\"https://docs.freebsd.org/en/books/handbook/mirrors/#mirrors-ftp\">FreeBSD mirror sites</a>."
+
+[[news]]
+date = "2023-03-25"
+title = "FreeBSD 13.2-RC4 Available"
+description = "The fourth RC build for the FreeBSD 13.2 release cycle is now available. ISO images for the amd64, i386, powerpc, powerpc64, powerpc64le, powerpcspe, armv6, armv7, aarch64, and riscv64 architectures are <a href=\"https://lists.freebsd.org/archives/freebsd-snapshots/2023-March/000229.html\">available</a> on most of our <a href=\"https://docs.freebsd.org/en/books/handbook/mirrors/#mirrors-ftp\">FreeBSD mirror sites</a>."
+
+[[news]]
+date = "2023-03-20"
+description = "Enhanced commit privileges: <a href=\"mailto:salvadore@FreeBSD.org\">Lorenzo Salvadore</a> (ports, doc)"
+
+[[news]]
 date = "2023-03-18"
 title = "FreeBSD 13.2-RC3 Available"
 description = "The third RC build for the FreeBSD 13.2 release cycle is now available. ISO images for the amd64, i386, powerpc, powerpc64, powerpc64le, powerpcspe, armv6, armv7, aarch64, and riscv64 architectures are <a href=\"https://lists.freebsd.org/archives/freebsd-snapshots/2023-March/000222.html\">available</a> on most of our <a href=\"https://docs.freebsd.org/en/books/handbook/mirrors/#mirrors-ftp\">FreeBSD mirror sites</a>."
