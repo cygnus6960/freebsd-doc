@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. type: Title =
-#: documentation/content/en/articles/_index.adoc:1
-#: documentation/content/en/articles/_index.adoc:6
+#: documentation/content/en/books/_index.adoc:1
+#: documentation/content/en/books/_index.adoc:6
 #, no-wrap
-msgid "Articles"
+msgid "Books"
 msgstr ""
 
 #. type: Plain text
-#: documentation/content/en/articles/_index.adoc:8
-msgid "{{< list-articles-directories >}}"
+#: documentation/content/en/books/_index.adoc:8
+msgid "{{< list-books-directories >}}"
 msgstr ""
