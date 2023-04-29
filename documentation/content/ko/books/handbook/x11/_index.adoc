@@ -53,7 +53,7 @@ endif::[]
 
 bsdinstall을 사용하는 FreeBSD의 설치과정은 자동으로 그래픽 사용자 인터페이스를 설치하지 않습니다. 이 챕터는 그래픽 환경을 제공하는 오픈 소스 X 윈도우 시스템인 Xorg의 설치와 설정에 대해 설명합니다. 그리고 그래픽 환경과 윈도우 관리자를 찾아 설치하는 법을 설명합니다.
 
-이 챕터를 읽기 전에 여러분은 다음 사항을 알고 있어야 합니다:
+이 챕터를 읽기 전에 여러분은:
 
 * crossref:ports[ports,Installing Applications: Packages and Ports]에서 설명하고 있는 서드파티 소프트웨어를 추가로 설치하는 방법.
 
@@ -65,20 +65,20 @@ bsdinstall을 사용하는 FreeBSD의 설치과정은 자동으로 그래픽 사
 * 그래픽 환경에서 로그인하도록 시스템을 설정하는 방법(XDM).
 
 [[x-install]]
-== Xorg 설치
+== Xorg 설치하기
 
 FreeBSD에서 Xorg는 패키지 또는 포트(Port)로 설치할 수 있습니다.
 
-The binary meta package can be installed quickly but with fewer options for customization:
+바이너리 메타 패키지는 빠르게 설치할 수 있지만 사용자 지정 옵션이 적습니다:
 
 [source, shell]
 ....
 # pkg install xorg
 ....
 
-Either of these installations results in the complete Xorg system being installed.
+이 두 가지 설치 방법 중 하나를 선택하면 전체 Xorg 시스템이 설치됩니다.
 
-The current user must be a member of the `video` group. To add a user to `video` group, execute the following command:
+현재 사용자는 `video` 그룹의 구성원이어야 합니다. `video` 그룹에 사용자를 추가하려면 다음 명령을 실행합니다:
 
 [source, shell]
 ....
@@ -92,15 +92,15 @@ The current user must be a member of the `video` group. To add a user to `video`
 
 [TIP]
 ====
-Video cards, monitors, and input devices are automatically detected and do not require any manual configuration. Do not create `xorg.conf` or run a `-configure` step unless automatic configuration fails.
+비디오 카드, 모니터 및 입력 장치는 자동으로 감지되므로 수동 구성이 필요하지 않습니다. 자동 구성에 실패하지 않는 한 `xorg.conf`를 만들거나 `-configure` 단계를 실행하지 마세요.
 ====
 
 [[x-graphic-card-drivers]]
-== Graphic card drivers
+== 그래픽 카드 드라이버
 
-The following table shows the different graphics cards supported by FreeBSD, which package should be installed and its corresponding module.
+다음 표는 FreeBSD에서 지원하는 다양한 그래픽 카드, 설치해야 하는 패키지 및 해당 모듈을 보여줍니다.
 
-.Graphic card packages
+.그래픽 카드 패키지
 [options="header", cols="1,1,1,1"]
 |===
 | Brand | Type | Package | Module
@@ -142,14 +142,14 @@ The following table shows the different graphics cards supported by FreeBSD, whi
 
 |===
 
-The following command can be used to identify which graphics card is installed in the system:
+다음 명령을 사용하여 시스템에 어떤 그래픽 카드가 설치되어 있는지 식별할 수 있습니다:
 
 [source, shell]
 ....
 % pciconf -lv|grep -B4 VGA
 ....
 
-The output should be similar to the following:
+출력은 다음과 비슷해야 합니다:
 
 [.programlisting]
 ....
@@ -162,16 +162,16 @@ vgapci0@pci0:0:2:0:     class=0x030000 rev=0x07 hdr=0x00 vendor=0x8086 device=0x
 
 [WARNING]
 ====
-If the graphics card is not supported by Intel(R), AMD(R) or NVIDIA(R) drivers, then VESA or SCFB modules should be used. VESA module must be used when booting in BIOS mode and SCFB module must be used when booting in UEFI mode.
+그래픽 카드가 Intel(R), AMD(R) 또는 NVIDIA(R) 드라이버에서 지원되지 않는 경우 VESA 또는 SCFB 모듈을 사용해야 합니다. BIOS 모드로 부팅할 때는 VESA 모듈을 사용해야 하며, UEFI 모드로 부팅할 때는 SCFB 모듈을 사용해야 합니다.
 
-This command can be used to check the booting mode:
+이 명령은 부팅 모드를 확인하는 데 사용할 수 있습니다:
 
 [source, shell]
 ....
 % sysctl machdep.bootmethod
 ....
 
-The output should be similar to the following:
+출력은 다음과 비슷해야 합니다:
 
 [.programlisting]
 ....
@@ -182,16 +182,16 @@ machdep.bootmethod: BIOS
 [[x-configuration-intel]]
 === Intel(R)
 
-Intel(R) Graphics refers to the class of graphics chips that are integrated on the same die as an Intel(R) CPU. Wikipedia offers link:https://en.wikipedia.org/wiki/List_of_Intel_graphics_processing_units[a good overview of the variations and names used for generations of Intel HD Graphics].
+인텔(R) 그래픽은 인텔(R) CPU와 동일한 다이에 통합된 그래픽 칩 클래스를 말합니다. Wikipedia의 link:https://en.wikipedia.org/wiki/List_of_Intel_graphics_processing_units[여러 세대의 인텔 HD 그래픽에 사용된 변형 및 이름에 대한 좋은 개요]를 확인하세요.
 
-The package:graphics/drm-kmod[] package indirectly provides a range of kernel modules for use with Intel(R) Graphics cards. The Intel(R) driver can be installed by executing the following command:
+package:graphics/drm-kmod[] 패키지는 인텔(R) 그래픽 카드와 함께 사용할 수 있는 다양한 커널 모듈을 간접적으로 제공합니다. 인텔(R) 드라이버는 다음 명령을 실행하여 설치할 수 있습니다:
 
 [source, shell]
 ....
 # pkg install drm-kmod
 ....
 
-Then add the module to `/etc/rc.conf` file, executing the following command:
+그런 다음, 다음 명령을 실행하여 `/etc/rc.conf` 파일에 모듈을 추가합니다:
 
 [source, shell]
 ....
@@ -200,7 +200,7 @@ Then add the module to `/etc/rc.conf` file, executing the following command:
 
 [TIP]
 ====
-If a high CPU usage is noticed or excessive tearing with HD video, the installation of package:multimedia/libva-intel-driver[] may help. To install the package execute the following command:
+CPU 사용량이 높거나 HD 동영상에서 과도한 테어링이 발생하는 경우 package:multimedia/libva-intel-driver[]를 설치하면 도움이 될 수 있습니다. 패키지를 설치하려면 다음 명령을 실행하세요:
 
 [source, shell]
 ....
@@ -211,23 +211,23 @@ If a high CPU usage is noticed or excessive tearing with HD video, the installat
 [[x-configuration-amd]]
 === AMD(R)
 
-The package:graphics/drm-kmod[] package indirectly provides a range of kernel modules for use with AMD(R) Graphics cards. The modules `amdgpu` and `radeonkms` can be used depending the generation of the hardware. The FreeBSD project maintains an link:https://wiki.freebsd.org/Graphics/AMD-GPU-Matrix[AMD graphics support matrix to determine which driver must be used].
+package:graphics/drm-kmod[] 패키지는 AMD(R) 그래픽 카드와 함께 사용할 수 있는 다양한 커널 모듈을 간접적으로 제공합니다. 하드웨어의 세대에 따라 `amdgpu`와 `radeonkms` 모듈을 사용할 수 있습니다. FreeBSD 프로젝트는 https://wiki.freebsd.org/Graphics/AMD-GPU-Matrix[AMD 그래픽 지원 매트릭스를 이용해 필수적으로 사용해야 할 드라이버 확인하기] 링크를 관리합니다.
 
-AMD(R) driver can be installed by executing the following command:
+AMD(R) 드라이버는 다음 명령을 실행하여 설치할 수 있습니다:
 
 [source, shell]
 ....
 # pkg install drm-kmod
 ....
 
-For post-HD7000 or Tahiti graphic cards add the module to `/etc/rc.conf` file, executing the following command:
+HD-7000 또는 타히티 그래픽 카드 후속모델의 경우 다음 명령을 실행하여 `/etc/rc.conf` 파일에 모듈을 추가합니다:
 
 [source, shell]
 ....
 # sysrc kld_list+=amdgpu
 ....
 
-For older graphic cards (pre-HD7000 or pre-Tahiti) add the module to `/etc/rc.conf` file, executing the following command:
+구형 그래픽 카드(HD-7000 이전 또는 타히티 이전)의 경우 다음 명령을 실행하여 `/etc/rc.conf` 파일에 모듈을 추가합니다:
 
 [source, shell]
 ....
@@ -237,9 +237,9 @@ For older graphic cards (pre-HD7000 or pre-Tahiti) add the module to `/etc/rc.co
 [[x-configuration-nvidia]]
 === NVIDIA(R)
 
-FreeBSD supports different versions of the proprietary NVIDIA(R) driver. Users of newer graphics cards should install the package:x11/nvidia-driver[] package. Those with older cards will have to check below which version supports them.
+FreeBSD는 다양한 버전의 독점적인 NVIDIA(R) 드라이버를 지원합니다. 최신 그래픽 카드 사용자는 package:x11/nvidia-driver[] 패키지를 설치해야 합니다. 구형 카드를 사용하시는 분들은 아래에서 어떤 버전이 지원되는지 확인하셔야 합니다.
 
-.Supported versions of NVIDIA(R) drivers
+.NVIDIA(R) 드라이버의 지원버전
 [options="header", cols="1,1"]
 |===
 | Package | Supported hardware
@@ -263,17 +263,17 @@ FreeBSD supports different versions of the proprietary NVIDIA(R) driver. Users o
 
 [WARNING]
 ====
-Version 304 of the NVIDIA(R) graphics driver (nvidia-driver-304) does not support xorg-server 1.20 or later.
+NVIDIA(R) 그래픽 드라이버 버전 304(nvidia-driver-304)는 xorg-server 1.20 이상을 지원하지 않습니다.
 ====
 
-The latest NVIDIA(R) driver can be installed by running the following command:
+다음 명령을 실행하여 최신 NVIDIA(R) 드라이버를 설치할 수 있습니다:
 
 [source, shell]
 ....
 # pkg install nvidia-driver
 ....
 
-Then add the module to `/etc/rc.conf` file, executing the following command:
+그런 다음, 다음 명령을 실행하여 `/etc/rc.conf` 파일에 모듈을 추가합니다:
 
 [source, shell]
 ....
@@ -282,7 +282,7 @@ Then add the module to `/etc/rc.conf` file, executing the following command:
 
 [WARNING]
 ====
-The `nvidia` driver must be used if the packages x11/nvidia-driver-304 or x11/nvidia-driver-340 have been installed.
+`nvidia` 드라이버는 x11/nvidia-driver-304 또는 x11/nvidia-driver-340 패키지가 설치되어 있는 경우 사용해야 합니다.
 
 [source, shell]
 ....
@@ -297,30 +297,30 @@ Xorg는 대부분의 일반적인 비디오 카드, 키보드, 포인팅 장치�
 
 [WARNING]
 ====
-Video cards, monitors, and input devices are automatically detected and do not require any manual configuration. Do not create [.filename]#xorg.conf# or run a `Xorg -configure` step unless automatic configuration fails.
+비디오 카드, 모니터 및 입력 장치는 자동으로 감지되므로 수동 구성이 필요하지 않습니다. 자동 구성에 실패하지 않는 한 [.filename]#xorg.conf#를 만들거나 `Xorg -configure` 단계를 실행하지 마세요.
 ====
 
 [[x-config-files]]
 === 구성 파일
 
-Xorg looks in several directories for configuration files. [.filename]#/usr/local/etc/X11/# is the *recommended* directory for these files on FreeBSD. Using this directory helps keep application files separate from operating system files.
+Xorg는 여러 디렉터리에서 구성 파일을 찾습니다. [.filename]#/usr/local/etc/X11/#은 FreeBSD에서 이러한 파일을 위한 *권장* 디렉터리입니다. 이 디렉터리를 사용하면 애플리케이션 파일을 운영 체제 파일과 분리하여 보관할 수 있습니다.
 
 [[x-config-files-single-or-multi]]
 === 단일 또는 다중 파일
 
-It is easier to use multiple files that each configure a specific setting than the traditional single [.filename]#xorg.conf#. These files are stored in the [.filename]#/usr/local/etc/X11/xorg.conf.d/# subdirectory.
+기존의 단일 [.filename]#xorg.conf#보다 각각 특정 설정을 구성하는 여러 파일을 사용하는 것이 더 쉽습니다. 이러한 파일은 [.filename]#/usr/local/etc/X11/xorg.conf.d/# 의 하위 디렉터리에 저장됩니다.
 
 [TIP]
 ====
-The traditional single [.filename]#xorg.conf# still works, but is neither as clear nor as flexible as multiple files in the [.filename]#/usr/local/etc/X11/xorg.conf.d/# subdirectory.
+기존의 단일 [.filename]#xorg.conf#는 여전히 작동되지만 [.filename]#/usr/local/etc/X11/xorg.conf.d/# 하위 디렉터리에 있는 여러 파일만큼 명확하거나 유연하지 않습니다.
 ====
 
 [[x-config-video-cards]]
 === 비디오 카드
 
-The driver for the graphics card can be specified in the [.filename]#/usr/local/etc/X11/xorg.conf.d/# directory.
+그래픽 카드를 위한 드라이버는 [.filename]#/usr/local/etc/X11/xorg.conf.d/# 디렉터리에 지정할 수 있습니다.
 
-To configure the Intel(R) driver in a configuration file:
+구성 파일에서 인텔(R) 드라이버를 구성하려면:
 
 [[x-config-video-cards-file-intel]]
 .파일에서 인텔(R) 비디오 드라이버 선택
@@ -337,10 +337,10 @@ EndSection
 ....
 ====
 
-To configure the AMD(R) driver in a configuration file:
+구성 파일에서 AMD(R) 드라이버를 구성하려면:
 
 [[x-config-video-cards-file-amd]]
-.Select AMD(R) Video Driver in a File
+.파일에서 AMD(R) 비디오 드라이버 선택
 [example]
 ====
 [.filename]#/usr/local/etc/X11/xorg.conf.d/20-radeon.conf#
@@ -354,10 +354,10 @@ EndSection
 ....
 ====
 
-To configure the NVIDIA(R) driver in a configuration file:
+구성 파일에서 NVIDIA(R) 드라이버를 구성하려면:
 
 [[x-config-video-cards-file-nvidia]]
-.Select NVIDIA(R) Video Driver in a File
+.파일에서 NVIDIA(R) 비디오 드라이버 선택
 [example]
 ====
 [.filename]#/usr/local/etc/X11/xorg.conf.d/20-nvidia.conf#
@@ -371,10 +371,10 @@ EndSection
 ....
 ====
 
-To configure the VESA driver in a configuration file:
+구성 파일에서 `VESA` 드라이버를 구성하려면:
 
 [[x-config-video-cards-file-vesa]]
-.Select VESA Video Driver in a File
+.파일에서 VESA 비디오 드라이버를 선택
 [example]
 ====
 [.filename]#/usr/local/etc/X11/xorg.conf.d/20-vesa.conf#
@@ -388,10 +388,10 @@ EndSection
 ....
 ====
 
-To configure the SCFB driver in a configuration file:
+구성 파일에서 SCFB 드라이버를 구성하려면:
 
 [[x-config-video-cards-file-sfcb]]
-.Select SCFB Video Driver in a File
+.파일에서 SCFB 비디오 드라이버를 선택
 [example]
 ====
 [.filename]#/usr/local/etc/X11/xorg.conf.d/20-scfb.conf#
@@ -405,14 +405,14 @@ EndSection
 ....
 ====
 
-To configure multiple video cards, the `BusID` can be added. A list of video card bus ``ID``s can be displayed by executing:
+비디오 카드가 두 개 이상 있는 경우 `BusID`를 추가할 수 있습니다. 비디오 카드 버스 ``ID``의 목록은 다음을 실행하여 확인할 수 있습니다:
 
 [source, shell]
 ....
 % pciconf -lv | grep -B3 display
 ....
 
-The output should be similar to the following:
+출력은 다음과 비슷해야 합니다:
 
 [.programlisting]
 ....
@@ -428,7 +428,7 @@ vgapci1@pci0:0:2:1:     class=0x038000 rev=0x07 hdr=0x00 vendor=0x8086 device=0x
 ....
 
 [[x-config-video-cards-file-multiple]]
-.Select Intel(R) Video Driver and NVIDIA(R) Video Driver in a File
+.파일에서 인텔(R) 비디오 드라이버와 NVIDIA(R) 비디오 드라이버를 선택
 [example]
 ====
 
@@ -455,19 +455,19 @@ EndSection
 
 대부분의 모니터는 확장 디스플레이 식별 데이터 표준(`EDID`)을 지원합니다. Xorg는 `EDID`를 사용하여 모니터와 통신하고 지원되는 해상도 및 재생률(refresh rates)을 감지합니다. 그런 다음 해당 모니터에 사용할 가장 적절한 설정 조합을 선택합니다.
 
-모니터에서 지원되는 다른 해상도로 변경하고 싶은 경우, 구성 파일에서 원하는 해상도를 설정하거나 X 서버를 시작한 후 man:xrandr[1]을 사용하여 선택할 수 있습니다.
+모니터에서 지원되는 다른 해상도로 변경하고 싶은 경우, 구성 파일에서 원하는 해상도를 설정하거나 X 서버를 시작한 후 man:xrandr[1]를 사용하여 선택할 수 있습니다.
 
 [[x-config-monitors-xrandr]]
-==== Using RandR (Resize and Rotate)
+==== RandR 사용하기 (리사이징과 회전)
 
-매개변수 없이 man:xrandr[1]을 실행하면 비디오 출력 및 감지된 모니터 모드 목록을 확인할 수 있습니다:
+매개변수 없이 man:xrandr[1]를 실행하면 비디오 출력 및 감지된 모니터 모드 목록을 확인할 수 있습니다:
 
 [source, shell]
 ....
 % xrandr
 ....
 
-The output should be similar to the following:
+출력은 다음과 비슷해야 합니다:
 
 [.programlisting]
 ....
@@ -501,7 +501,7 @@ DP-2 disconnected (normal left inverted right x axis y axis)
 DP-3 disconnected (normal left inverted right x axis y axis)
 ....
 
-This shows that the `VGA-1` output is being used to display a screen resolution of 1280x960 pixels at a refresh rate of about 60 Hz. The `LVDS-1` is being used as a secondary monitor to display a screen resolution of 1280x800 pixels at a refresh rate of about 60 Hz. Monitors are not attached to the `HDMI-1`, `HDMI-2`, `DP-1`, `DP-2` and `DP-3` connectors.
+이 메세지는 약 60Hz의 재생률로 1920x1200픽셀의 화면 해상도를 표시하기 위해 `VGA-1` 출력이 사용되고 있음을 보여줍니다. `LVDS-1`은 약 60Hz의 주사율로 1280x800 픽셀의 화면 해상도를 표시하기 위해 보조 모니터로 사용되고 있습니다. `HDMI-1`, `HDMI-2`, `DP-1`, `DP-2` 및 `DP-3` 커넥터에는 모니터가 연결되어 있지 않습니다.
 
 다른 디스플레이 모드는 man:xrandr[1]로 선택할 수 있습니다. 예를 들어, 60Hz에서 1280x1024로 전환합니다:
 
@@ -511,9 +511,9 @@ This shows that the `VGA-1` output is being used to display a screen resolution 
 ....
 
 [[x-config-monitors-files]]
-==== Using the Xorg configuration file
+==== Xorg 구성파일 사용하기
 
-The monitor configuration can also be set in a configuration file.
+모니터 구성은 구성 파일에서도 설정할 수 있습니다.
 
 구성 파일에서 화면 해상도를 1024x768로 설정하려면 다음과 같이 하세요:
 
@@ -537,15 +537,15 @@ EndSection
 [[x-config-input]]
 === 입력 장치
 
-Xorg supports the vast majority of input devices via package:x11/libinput[].
+Xorg는 package:x11/libinput[]을 통해 대부분의 입력 장치를 지원합니다.
 
 [TIP]
 ====
-Some desktop environments (such as KDE Plasma) provide a graphical UI for setting these parameters. Check if this is the case before resorting to manual configuration editing.
+일부 데스크톱 환경(예: KDE Plasma)에서는 이러한 매개변수를 설정할 수 있는 그래픽 UI를 제공합니다. 수동 구성 편집을 사용하기 전에 해당되는지 확인하세요.
 ====
 
 [[x-config-input-keyboard-layout]]
-For example, to configure the keyboard layout:
+이 예에서 키보드 레이아웃을 구성하기 위해:
 
 .키보드 레이아웃 설정
 [example]
@@ -568,12 +568,12 @@ EndSection
 [[x-fonts]]
 == Xorg에서 글꼴 사용
 
-The default fonts that ship with Xorg are less than ideal for typical desktop publishing applications. Large presentation fonts show up jagged and unprofessional looking, and small fonts are almost completely unintelligible. However, there are several free, high quality Type1 (PostScript(R)) fonts available which can be readily used with Xorg.
+Xorg와 함께 제공되는 기본 글꼴은 일반적인 데스크톱 퍼블리싱 애플리케이션에 적합하지 않습니다. 큰 프레젠테이션 글꼴은 들쭉날쭉하고 비전문적으로 보이며, 작은 글꼴은 거의 알아볼 수 없습니다. 하지만 Xorg와 함께 쉽게 사용할 수 있는 고품질의 무료 Type1(PostScript(R)) 글꼴이 몇 가지 있습니다.
 
 [[type1]]
 === Type1 글꼴
 
-The URW font collection (package:x11-fonts/urwfonts[]) includes high quality versions of standard type1 fonts (Times Roman(TM), Helvetica(TM), Palatino(TM) and others). The Freefonts collection (package:x11-fonts/freefonts[]) includes many more fonts, but most of them are intended for use in graphics software such as the Gimp, and are not complete enough to serve as screen fonts. In addition, Xorg can be configured to use TrueType(R) fonts with a minimum of effort. For more details on this, see the man:X[7] manual page or <<truetype>>.
+URW 글꼴 컬렉션(package:x11-fonts/urwfonts[])에는 표준 Type1 글꼴(Times Roman(TM), Helvetica(TM), Palatino(TM) 및 기타)의 고품질 버전이 포함되어 있습니다. 프리폰트 컬렉션(package:x11-fonts/freefonts[])에는 더 많은 글꼴이 포함되어 있지만, 대부분은 Gimp와 같은 그래픽 소프트웨어에서 사용하기 위한 것으로 화면 글꼴로 사용하기에는 적합하지 않습니다. 또한 최소한의 노력으로 TrueType(R) 글꼴을 사용하도록 Xorg를 구성할 수 있습니다. 이에 대한 자세한 내용은 man:X[7] 매뉴얼 페이지 또는 <<truetype>>을 참조하세요.
 
 바이너리 패키지에서 위의 Type1 글꼴 컬렉션을 설치하려면 다음 명령을 실행합니다:
 
@@ -582,7 +582,7 @@ The URW font collection (package:x11-fonts/urwfonts[]) includes high quality ver
 # pkg install urwfonts
 ....
 
-And likewise with the freefont or other collections. To have the X server detect these fonts, add an appropriate line to the X server configuration file ([.filename]#/usr/local/etc/X11/xorg.conf.d/90-fonts.conf#), which reads:
+무료 글꼴이나 다른 컬렉션도 마찬가지입니다. X 서버가 이러한 글꼴을 감지하도록 하려면 X 서버 구성 파일([.filename]#/usr/local/etc/X11/xorg.conf.d/90-fonts.conf#)에 다음과 같이 적절한 내용을 추가합니다:
 
 [.programlisting]
 ....
@@ -604,7 +604,7 @@ EndSection
 [[truetype]]
 === TrueType(R) 글꼴
 
-Xorg has built in support for rendering TrueType(R) fonts. There are two different modules that can enable this functionality. The freetype module is used in this example because it is more consistent with the other font rendering back-ends. To enable the freetype module just add the following line to the `"Module"` section of [.filename]#/usr/local/etc/X11/xorg.conf.d/90-fonts.conf#.
+Xorg에는 TrueType(R) 글꼴 렌더링 기능이 내장되어 있습니다. 이 기능을 활성화할 수 있는 두 가지 모듈이 있습니다. 이 예제에서는 다른 글꼴 렌더링 백엔드와 더 일관성이 있기 때문에 freetype 모듈을 사용했습니다. Freetype 모듈을 활성화하려면 [.filename]#/usr/local/etc/X11/xorg.conf.d/90-fonts.conf#의 `”Module”` 섹션에 다음 줄을 추가하기만 하면 됩니다.
 
 [.programlisting]
 ....
@@ -668,7 +668,7 @@ Load  "freetype"
 # fc-cache -f
 ....
 
-앤티 앨리어싱은 테두리를 약간 흐릿하게 만들어 매우 작은 텍스트의 가독성을 높이고 큰 텍스트의 “’계단현상”을 제거하지만 일반 텍스트에 적용하면 눈의 피로를 유발할 수 있습니다. 14포인트보다 작은 글꼴 크기를 앤티 앨리어싱에서 제외하려면 다음 줄을 포함하세요:
+앤티 앨리어싱은 테두리를 약간 흐릿하게 만들어 매우 작은 텍스트의 가독성을 높이고 큰 텍스트의 “계단현상”을 제거하지만 일반 텍스트에 적용하면 눈의 피로를 유발할 수 있습니다. 14포인트보다 작은 글꼴 크기를 앤티 앨리어싱에서 제외하려면 다음 줄을 포함하세요:
 
 [.programlisting]
 ....
@@ -763,4 +763,4 @@ Helvetica와 같은 몇몇 글꼴은 앤티 앨리어싱 시 문제가 발생할
 디스플레이 종류에 따라 'RGB'를 ‘BGR', 'VRGB' 또는 'VBGR'로 변경해야 할 수 있으므로 실험을 통해 어떤 것이 가장 효과적인지 확인하세요.
 ====
 
-For more information about how to install and configure fonts on FreeBSD, please read the article link:{fonts}[Fonts and FreeBSD].
+FreeBSD에서 글꼴을 설치하고 구성하는 방법에 대한 자세한 내용은 문서 link:{fonts}[글꼴 및 FreeBSD]를 참조하세요.

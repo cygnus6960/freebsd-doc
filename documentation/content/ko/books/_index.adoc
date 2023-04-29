@@ -1,6 +1,6 @@
 ---
-layout: total-list
 title: Books
+layout: total-list
 ---
 
 = Books

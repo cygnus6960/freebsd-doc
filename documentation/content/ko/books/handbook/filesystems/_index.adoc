@@ -63,7 +63,7 @@ endif::[]
 * FreeBSD에서 지원되는 파일 시스템 종류.
 * 기본이 아닌 파일 시스템을 활성화, 구성, 액세스 및 사용하는 방법.
 
-이 챕터를 읽기 전에 여러분은 다음 사항을 알고 있어야 합니다:
+이 챕터를 읽기 전에 여러분은:
 
 * UNIX(R)와 crossref:basics[basics,FreeBSD basics]의 이해.
 * crossref:kernelconfig[kernelconfig,kernel configuration and compilation]에 친숙해야 합니다.

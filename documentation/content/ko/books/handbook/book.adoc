@@ -1,16 +1,15 @@
 ---
-add_split_page_link: 'true'
+title: FreeBSD Handbook
 authors:
-  - 
-    author: 'The FreeBSD Documentation Project'
-copyright: '1995-2023 The FreeBSD Documentation Project'
-description: 'FreeBSD 사용자를 위한 지속적으로 발전하는 종합 리소스'
-tags: ["FreeBSD Handbook", "Handbook"]
-title: 'FreeBSD 핸드북'
+  - author: The FreeBSD Documentation Project
+copyright: 1995-2023 The FreeBSD Documentation Project
+description: A constantly evolving, comprehensive resource for FreeBSD users
 trademarks: ["freebsd", "ibm", "ieee", "redhat", "3com", "adobe", "apple", "intel", "linux", "microsoft", "opengroup", "sun", "realnetworks", "oracle", "3ware", "arm", "adaptec", "google", "heidelberger", "intuit", "lsilogic", "themathworks", "thomson", "vmware", "wolframresearch", "xiph", "xfree86", "general"]
+tags: ["FreeBSD Handbook", "Handbook"]
+add_split_page_link: true
 ---
 
-= FreeBSD 핸드북
+= FreeBSD Handbook
 :doctype: book
 :toc: macro
 :toclevels: 2

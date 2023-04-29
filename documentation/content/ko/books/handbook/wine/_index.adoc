@@ -55,7 +55,7 @@ https://www.winehq.org/[WINE]은 Wine Is Not an Emulator의 약자로, 엄밀히
 
 이것은 시스템 호출 또는 소프트웨어에서 운영 체제로의 요청을 가로채서, Windows(R) 호출에서 FreeBSD가 이해할 수 있는 호출로 변환하는 방식으로 작동합니다. 또한 필요에 따라 모든 응답을 Windows(R) 소프트웨어가 기대하는 응답으로 변환합니다. 따라서 어떤 면에서는 Windows(R) 애플리케이션이 기대하는 많은 리소스를 제공한다는 점에서 Windows(R) 환경을 _에뮬레이션_합니다.
 
-그러나 이는 전통적인 의미의 에뮬레이터가 아닙니다. 이러한 솔루션의 대부분은 하드웨어 대신 소프트웨어 프로세스를 사용하여 다른 컴퓨터 전체를 구성하는 방식으로 작동합니다. 가상화(package:emulators/qemu[] 포트에서 제공하는 것과 같은)는 이러한 방식으로 작동합니다. 이 접근 방식의 장점 중 하나는 에뮬레이터에 해당 OS의 정식 버전을 설치할 수 있다는 것입니다. 즉, 애플리케이션 환경이 실제 컴퓨터와 다르지 않으며 모든 것이 작동할 가능성이 높습니다. 이 접근 방식의 단점은 하드웨어 역할을 하는 소프트웨어가 본질적으로 실제 하드웨어보다 느리다는 사실입니다. 소프트웨어가 내장된 컴퓨터(_게스트_라고 함)는 실제 컴퓨터(_호스트_)의 리소스를 필요로 하며, 실행되는 동안 해당 리소스를 보유합니다.
+However, it is not an emulator in the traditional sense. Many of these solutions operate by constructing an entire other computer using software processes in place of hardware Virtualization (such as that provided by the package:emulators/qemu[] port) operates in this way. One of the benefits of this approach is the ability to install a full version of the OS in question to the emulator. It means that the environment will not look any different to applications than a real machine, and chances are good that everything will work on it. The downside to this approach is the fact that software acting as hardware is inherently slower than actual hardware. The computer built in software (called the _guest_) requires resources from the real machine (the _host_), and holds on to those resources for as long as it is running.
 
 반면에 WINE 프로젝트는 시스템 리소스를 훨씬 적게 사용합니다. 시스템 호출을 즉석에서 번역하므로 실제 Windows(R) 컴퓨터만큼 빠르기는 어렵지만 매우 근접할 수 있습니다. 반면에 WINE은 지원해야 하는 모든 다양한 시스템 호출과 기타 기능의 측면에서 움직이는 목표를 따라잡기 위해 노력하고 있습니다. 그 결과 WINE에서 예상대로 작동하지 않거나 전혀 작동하지 않거나 아예 설치조차 되지 않는 애플리케이션이 있을 수 있습니다.
 
@@ -434,7 +434,7 @@ WINE의 기본 설치에는 `winecfg`에 GUI 구성 도구가 함께 제공되�
 [[installing-winetricks]]
 ==== winetricks 설치하기
 
-바이너리 패키지를 사용하여 FreeBSD에 `winetricks`를 설치하려면 다음 명령을 사용합니다(`와인트릭스`에는 i386-wine 또는 i386-wine-devel 패키지가 필요하나, 다른 종속성 패키지와 함께 자동으로 설치되지 않음에 유의하세요):
+바이너리 패키지를 사용하여 FreeBSD에 `winetricks`를 설치하려면 다음 명령을 사용합니다(`winetricks`에는 i386-wine 또는 i386-wine-devel 패키지가 필요하나, 다른 종속성 패키지와 함께 자동으로 설치되지 않음에 유의하세요):
 
 [source, shell]
 ....
@@ -572,7 +572,7 @@ image::homura-install-7.png[]
 
 image::homura-install-8.png[]
 
-새 프로그램을 실행하려면 목록에서 해당 프로그램을 선택하고 _OK_를 클릭합니다. 애플리케이션을 제거하려면 메인 화면에서 _Uninstallation_를 선택하면 비슷한 목록이 표시됩니다. 제거할 프로그램을 선택하고 _OK_를 클릭합니다.
+새 프로그램을 실행하려면 목록에서 해당 프로그램을 선택하고 _OK_를 클릭합니다. 애플리케이션을 제거하려면 메인 화면에서 _Uninstallation_을 선택하면 비슷한 목록이 표시됩니다. 제거할 프로그램을 선택하고 _OK_를 클릭합니다.
 
 image::homura-uninstall-1.png[]
 
@@ -584,7 +584,7 @@ image::homura-uninstall-1.png[]
 그러나 동일한 WINE 접두사에 액세스하지 않도록 하는 것이 현명합니다. 이러한 각 솔루션은 특정 애플리케이션을 원활하게 실행하기 위해 기존 WINE 문제에 대한 알려진 해결 방법을 기반으로 해결 방법을 적용하고 레지스트리를 변경합니다. `winetricks`과 호무라가 모두 동일한 접두사에 액세스할 수 있도록 허용하면 이 중 일부를 덮어쓰게 되어 결과적으로 일부 또는 모든 애플리케이션이 예상대로 작동하지 않을 수 있습니다.
 
 [[wine-in-multi-user-os-installations]]
-== 다중 사용자 FreeBSD 환경에서 와인 설치
+== 다중 사용자 FreeBSD 환경에서 WINE 설치
 
 [[issues-with-using-a-common-wine-prefix]]
 === 일반적인 WINE 접두사 사용 시 발생하는 문제
@@ -671,7 +671,7 @@ WINDOWS_USERS ALL = (windows) NOPASSWD: WINDOWS
 % xhost +local:windows
 ....
 
-로그인 시 또는 기본 그래픽 환경이 시작될 때 실행되는 명령 목록에 ㄷ음 명령을 추가해야 합니다. 위의 모든 작업이 완료되면 [.filename]#sudoers#에서 `WINDOW_USERS` 중 하나로 구성된 사용자는 다음 명령과 함께 공유 접두사를 사용하여 프로그램을 실행할 수 있습니다:
+로그인 시 또는 기본 그래픽 환경이 시작될 때 실행되는 명령 목록에 다음 명령을 추가해야 합니다. 위의 모든 작업이 완료되면 [.filename]#sudoers#에서 `WINDOW_USERS` 중 하나로 구성된 사용자는 다음 명령과 함께 공유 접두사를 사용하여 프로그램을 실행할 수 있습니다:
 
 [source, shell]
 ....
@@ -681,7 +681,7 @@ WINDOWS_USERS ALL = (windows) NOPASSWD: WINDOWS
 이 방식을 사용해도 여러 사용자가 동시에 공유 환경에 액세스하는 것은 여전히 위험하다는 점에 유의할 필요가 있습니다. 그러나 공유 환경 자체에 여러 접두사가 포함될 수 있다는 점도 고려하세요. 이러한 방식으로 관리자는 각각 고유한 접두사를 사용하여 테스트되고 검증된 프로그램 집합을 만들 수 있습니다. 동시에 한 사용자가 게임을 플레이하는 동안 다른 사용자는 소프트웨어를 중복 설치할 필요 없이 오피스 프로그램을 사용할 수 있습니다.
 
 [[wine-on-os-faq]]
-== FreeBSD에서 와인에 관한 FAQ
+== FreeBSD에서 WINE에 관한 FAQ
 
 다음 섹션에서는 몇 가지 자주 묻는 질문, 팁/요령 또는 FreeBSD에서 와인을 실행할 때 흔히 발생하는 문제와 그에 대한 답변을 설명합니다.
 
@@ -711,7 +711,7 @@ WINE에는 최신 업데이트가 포함된 “스테이징(Staging)” 버전�
 [[how-should-windows-hardware-graphics-drivers-be-handled]]
 ==== Windows(R) 하드웨어(예: 그래픽) 드라이버는 어떻게 처리해야 하나요?
 
-운영 체제 드라이버는 응용 프로그램과 하드웨어 간에 명령을 전송합니다. 와인은 드라이버를 포함한 Windows(R) 환경을 에뮬레이션하며, 이 전송을 위해 FreeBSD의 기본 드라이버를 사용합니다. 와인 시스템은 호스트 시스템 드라이버를 사용하도록 설계되었으므로 Windows(R) 드라이버를 설치하는 것은 바람직하지 않습니다. 예를 들어 전용 드라이버를 사용하는 그래픽 카드의 경우, Windows(R) 설치 프로그램이 아닌 표준 FreeBSD 방법을 사용하여 설치하십시오.
+운영 체제 드라이버는 응용 프로그램과 하드웨어 간에 명령을 전송합니다. WINE은 드라이버를 포함한 Windows(R) 환경을 에뮬레이션하며, 이 전송을 위해 FreeBSD의 기본 드라이버를 사용합니다. WINE 시스템은 호스트 시스템 드라이버를 사용하도록 설계되었으므로 Windows(R) 드라이버를 설치하는 것은 바람직하지 않습니다. 예를 들어 전용 드라이버를 사용하는 그래픽 카드의 경우, Windows(R) 설치 프로그램이 아닌 표준 FreeBSD 방법을 사용하여 설치하십시오.
 
 [[is-there-a-way-to-make-windows-fonts-look-better]]
 ==== Windows(R) 글꼴을 더 보기 좋게 만들 수 있는 방법이 있나요?

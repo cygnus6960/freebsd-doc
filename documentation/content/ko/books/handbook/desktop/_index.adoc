@@ -1,13 +1,13 @@
 ---
-description: 'This chapter demonstrates how to install numerous desktop environments, including web browsers, productivity software, document viewers, and financial software'
-next: books/handbook/multimedia
-part: '파트 II. 일반적인 작업'
-path: /books/handbook/
+title: Chapter 7. Desktop Environments
+part: Part II. Common Tasks
 prev: books/handbook/partii
-showBookMenu: 'true'
+next: books/handbook/multimedia
+description: This chapter demonstrates how to install numerous desktop environments, including web browsers, productivity software, document viewers, and financial software
 tags: ["desktop", "KDE Plasma", "GNOME", "XFCE", "MATE", "Cinnamon", "LXQT", "browsers", "Firefox", "Chromium", "Iridium", "Falkon", "Konqueror", "Epiphany", "qutebrowser", "Dillo", "Links", "w3m", "Development tools", "Visual Studio Code", "Qt Creator", "Kdevelop", "Eclipse IDE", "Vim", "Neovim", "GNU Emacs", "Productivity", "LibreOffice", "Calligra", "AbiWord", "Viewers", "Okular", "Evince", "ePDFView", "Xpdf", "Finance", "KMyMoney", "GnuCash"]
-title: 'Chapter 7. Desktop Environments'
+showBookMenu: true
 weight: 10
+path: "/books/handbook/"
 ---
 
 [[desktop]]
@@ -49,9 +49,11 @@ include::../../../../../shared/asciidoctor.adoc[]
 endif::[]
 
 [[desktop-synopsis]]
-== 요약
+== Synopsis
 
-While FreeBSD is popular as a server for its performance and stability, it is also well suited for day-to-day use as a desktop. With over {numports} applications available in the FreeBSD ports tree, it is straightforward to build a customized desktop that can run a wide variety of desktop applications. This chapter demonstrates how to install popular desktop environments as well as desktop applications such as web browsers, productivity software, document viewers, and financial software.
+While FreeBSD is popular as a server for its performance and stability, it is also well suited for day-to-day use as a desktop.
+With over {numports} applications available in the FreeBSD ports tree, it is straightforward to build a customized desktop that can run a wide variety of desktop applications.
+This chapter demonstrates how to install popular desktop environments as well as desktop applications such as web browsers, productivity software, document viewers, and financial software.
 
 Prerequisites:
 
@@ -61,7 +63,8 @@ Prerequisites:
 [[desktop-environments]]
 == Desktop Environments
 
-This section describes how to install and configure some popular desktop environments on a FreeBSD system. A desktop environment can range from a simple window manager to a complete suite of desktop applications.
+This section describes how to install and configure some popular desktop environments on a FreeBSD system.
+A desktop environment can range from a simple window manager to a complete suite of desktop applications.
 
 .Supported desktop environments
 [options="header", cols="1,1,1"]
@@ -97,14 +100,17 @@ This section describes how to install and configure some popular desktop environ
 [[kde-environment]]
 === KDE Plasma
 
-KDE Plasma is an easy-to-use desktop environment. This desktop provides a suite of applications with a consistent look and feel, a standardized menu and toolbars, keybindings, color-schemes, internationalization, and a centralized, dialog-driven desktop configuration. More information on KDE can be found at the link:https://kde.org/[KDE homepage]. For FreeBSD-specific information, consult the link:https://freebsd.kde.org/[FreeBSD homepage at KDE].
+KDE Plasma is an easy-to-use desktop environment.
+This desktop provides a suite of applications with a consistent look and feel, a standardized menu and toolbars, keybindings, color-schemes, internationalization, and a centralized, dialog-driven desktop configuration.
+More information on KDE can be found at the link:https://kde.org/[KDE homepage].
+For FreeBSD-specific information, consult the link:https://freebsd.kde.org/[FreeBSD homepage at KDE].
 
 [[kde-meta-install]]
 ==== Install KDE Plasma meta package
 
 To install the KDE Plasma meta package with KDE Frameworks, Plasma Desktop and Applications execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install kde5
 ....
@@ -114,16 +120,17 @@ To install the KDE Plasma meta package with KDE Frameworks, Plasma Desktop and A
 
 To install a minimal KDE Plasma execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install plasma5-plasma
 ....
 
 [TIP]
 ====
-This installation is *really* minimal. Konsole must be installed separately executing:
+This installation is *really* minimal.
+Konsole must be installed separately executing:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install konsole
 ....
@@ -132,18 +139,19 @@ This installation is *really* minimal. Konsole must be installed separately exec
 [[kde-configuration]]
 ==== Configure KDE Plasma
 
-KDE Plasma uses man:dbus-daemon[1] for a message bus and hardware abstraction. This application is automatically installed as a dependency of KDE Plasma.
+KDE Plasma uses man:dbus-daemon[1] for a message bus and hardware abstraction.
+This application is automatically installed as a dependency of KDE Plasma.
 
 Enable D-BUS service in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc dbus_enable="YES"
 ....
 
 To increase messages size execute:
 
-[source, shell]
+[source,shell]
 ....
 sysctl net.local.stream.recvspace=65536
 sysctl net.local.stream.sendspace=65536
@@ -152,30 +160,32 @@ sysctl net.local.stream.sendspace=65536
 [[kde-start]]
 ==== Start KDE Plasma
 
-The preferred KDE Plasma display manager is package:x11/sddm[]. To install package:x11/sddm[], execute:
+The preferred KDE Plasma display manager is package:x11/sddm[].
+To install package:x11/sddm[], execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install sddm
 ....
 
 Enable SDDM service in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc sddm_enable="YES"
 ....
 
 The keyboard language can be set in SDDM by running the following command (for Spanish, for example):
 
-[source, shell]
+[source,shell]
 ....
 # sysrc sddm_lang="es_ES"
 ....
 
-A second method to start KDE Plasma is by manually invoking man:startx[1]. For this to work, the following line is needed in ~/.xinitrc:
+A second method to start KDE Plasma is by manually invoking man:startx[1].
+For this to work, the following line is needed in ~/.xinitrc:
 
-[source, shell]
+[source,shell]
 ....
 % echo "exec ck-launch-session startplasma-x11" > ~/.xinitrc
 ....
@@ -190,7 +200,7 @@ GNOME is a user-friendly desktop environment. It includes a panel for starting a
 
 To install the GNOME meta package with GNOME Desktop and Applications, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install gnome
 ....
@@ -200,7 +210,7 @@ To install the GNOME meta package with GNOME Desktop and Applications, execute:
 
 To install the GNOME-lite meta package with a GNOME desktop slimmed down for only the basics, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install gnome-lite
 ....
@@ -208,7 +218,8 @@ To install the GNOME-lite meta package with a GNOME desktop slimmed down for onl
 [[gnome-configuration]]
 ==== Configure GNOME
 
-GNOME requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this file system automatically during system startup:
+GNOME requires `/proc` to be mounted.
+Add this line to `/etc/fstab` to mount this file system automatically during system startup:
 
 [.programlisting]
 ....
@@ -216,11 +227,12 @@ GNOME requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount thi
 proc                    /proc           procfs  rw              0       0
 ....
 
-GNOME uses man:dbus-daemon[1] for a message bus and hardware abstraction. This application is automatically installed as a dependency of GNOME.
+GNOME uses man:dbus-daemon[1] for a message bus and hardware abstraction.
+This application is automatically installed as a dependency of GNOME.
 
 Enable D-BUS service in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc dbus_enable="YES"
 ....
@@ -229,7 +241,7 @@ It is often desirable to also start all GNOME services.
 
 Enable GNOME services in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc gnome_enable="YES"
 ....
@@ -237,18 +249,20 @@ Enable GNOME services in `/etc/rc.conf` to start at system boot:
 [[gnome-start]]
 ==== Start GNOME
 
-GNOME Display Manager is the preferred display manager for GNOME. GDM is installed as part of the GNOME package.
+GNOME Display Manager is the preferred display manager for GNOME.
+GDM is installed as part of the GNOME package.
 
 Enable GDM in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc gdm_enable="YES"
 ....
 
-A second method to start GNOME is by manually invoking man:startx[1]. For this to work, the following line is needed in `~/.xinitrc`:
+A second method to start GNOME is by manually invoking man:startx[1].
+For this to work, the following line is needed in `~/.xinitrc`:
 
-[source, shell]
+[source,shell]
 ....
 % echo "exec gnome-session" > ~/.xinitrc
 ....
@@ -256,14 +270,16 @@ A second method to start GNOME is by manually invoking man:startx[1]. For this t
 [[xfce-environment]]
 === XFCE
 
-XFCE is a desktop environment based on the GTK+, lightweight and provides a simple, efficient, easy-to-use desktop. It is fully configurable, has a main panel with menus, applets, and application launchers, provides a file manager and sound manager, and is themeable. Since it is fast, light, and efficient, it is ideal for older or slower machines with memory limitations.
+XFCE is a desktop environment based on the GTK+, lightweight and provides a simple, efficient, easy-to-use desktop.
+It is fully configurable, has a main panel with menus, applets, and application launchers, provides a file manager and sound manager, and is themeable.
+Since it is fast, light, and efficient, it is ideal for older or slower machines with memory limitations.
 
 [[xfce-install]]
 ==== Install XFCE
 
 To install the XFCE meta package, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install xfce
 ....
@@ -271,7 +287,8 @@ To install the XFCE meta package, execute:
 [[xfce-configuration]]
 ==== Configure XFCE
 
-XFCE requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this file system automatically during system startup:
+XFCE requires `/proc` to be mounted.
+Add this line to `/etc/fstab` to mount this file system automatically during system startup:
 
 [.programlisting]
 ....
@@ -279,11 +296,12 @@ XFCE requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this
 proc                    /proc           procfs  rw              0       0
 ....
 
-XFCE uses man:dbus-daemon[1] for a message bus and hardware abstraction. This application is automatically installed as a dependency of XFCE.
+XFCE uses man:dbus-daemon[1] for a message bus and hardware abstraction.
+This application is automatically installed as a dependency of XFCE.
 
 Enable D-BUS in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc dbus_enable="YES"
 ....
@@ -295,21 +313,22 @@ package:x11/lightdm[] is a display manager that supports different display techn
 
 To install it, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install lightdm lightdm-gtk-greeter
 ....
 
 Enable lightdm in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc lightdm_enable="YES"
 ....
 
-A second method to start XFCE is by manually invoking man:startx[1]. For this to work, the following line is needed in `~/.xinitrc`:
+A second method to start XFCE is by manually invoking man:startx[1].
+For this to work, the following line is needed in `~/.xinitrc`:
 
-[source, shell]
+[source,shell]
 ....
 % echo '. /usr/local/etc/xdg/xfce4/xinitrc' > ~/.xinitrc
 ....
@@ -324,9 +343,9 @@ It provides an intuitive and attractive desktop environment using traditional me
 [[mate-meta-install]]
 ==== Install MATE meta package
 
-To install the MATE meta package that includes the MATE Desktop with some extra applications such as text editor, archiver manager, etc., execute:
+To install the MATE meta package that includes the MATE Desktop with some extra applications such as text editor, archiver manager, etc., execute: 
 
-[source, shell]
+[source,shell]
 ....
 # pkg install mate
 ....
@@ -336,7 +355,7 @@ To install the MATE meta package that includes the MATE Desktop with some extra 
 
 To install the MATE lite meta package with MATE desktop slimmed down for only the basics, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install mate-base
 ....
@@ -344,7 +363,8 @@ To install the MATE lite meta package with MATE desktop slimmed down for only th
 [[mate-configuration]]
 ==== Configure MATE
 
-MATE requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this file system automatically during system startup:
+MATE requires `/proc` to be mounted.
+Add this line to `/etc/fstab` to mount this file system automatically during system startup:
 
 [.programlisting]
 ....
@@ -352,9 +372,11 @@ MATE requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this
 proc                    /proc           procfs  rw              0       0
 ....
 
-MATE uses man:dbus-daemon[1] for a message bus and hardware abstraction. This application is automatically installed as a dependency of MATE. Enable D-BUS in `/etc/rc.conf` to start at system boot:
+MATE uses man:dbus-daemon[1] for a message bus and hardware abstraction.
+This application is automatically installed as a dependency of MATE.
+Enable D-BUS in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc dbus_enable="YES"
 ....
@@ -366,21 +388,22 @@ package:x11/lightdm[] is a display manager that supports different display techn
 
 To install it, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install lightdm lightdm-gtk-greeter
 ....
 
 Enable lightdm in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc lightdm_enable="YES"
 ....
 
-A second method to start MATE is by manually invoking man:startx[1]. For this to work, the following line is needed in `~/.xinitrc`:
+A second method to start MATE is by manually invoking man:startx[1].
+For this to work, the following line is needed in `~/.xinitrc`:
 
-[source, shell]
+[source,shell]
 ....
 % echo "exec ck-launch-session mate-session" > ~/.xinitrc
 ....
@@ -388,14 +411,17 @@ A second method to start MATE is by manually invoking man:startx[1]. For this to
 [[cinnamon-environment]]
 === Cinnamon
 
-Cinnamon is a UNIX(R) desktop which provides advanced innovative features and a traditional user experience. The desktop layout is similar to Gnome 2. The underlying technology is forked from Gnome Shell. The emphasis is put on making users feel at home and providing them with an easy to use and comfortable desktop experience.
+Cinnamon is a UNIX(R) desktop which provides advanced innovative features and a traditional user experience.
+The desktop layout is similar to Gnome 2.
+The underlying technology is forked from Gnome Shell.
+The emphasis is put on making users feel at home and providing them with an easy to use and comfortable desktop experience.
 
 [[cinnamon-install]]
 === Install Cinnamon
 
 To install the Cinnamon package, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install cinnamon
 ....
@@ -403,7 +429,8 @@ To install the Cinnamon package, execute:
 [[cinnamon-configuration]]
 ==== Configure Cinnamon
 
-Cinnamon requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this file system automatically during system startup:
+Cinnamon requires `/proc` to be mounted.
+Add this line to `/etc/fstab` to mount this file system automatically during system startup:
 
 [.programlisting]
 ....
@@ -411,9 +438,11 @@ Cinnamon requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount 
 proc                    /proc           procfs  rw              0       0
 ....
 
-Cinnamon uses man:dbus-daemon[1] for a message bus and hardware abstraction. This application is automatically installed as a dependency of Cinnamon. Enable D-BUS in `/etc/rc.conf` to start at system boot:
+Cinnamon uses man:dbus-daemon[1] for a message bus and hardware abstraction.
+This application is automatically installed as a dependency of Cinnamon.
+Enable D-BUS in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc dbus_enable="YES"
 ....
@@ -425,21 +454,22 @@ package:x11/lightdm[] is a display manager that supports different display techn
 
 To install it execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install lightdm lightdm-gtk-greeter
 ....
 
 Enable lightdm in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc lightdm_enable="YES"
 ....
 
-A second method to start Cinnamon is by manually invoking man:startx[1]. For this to work, the following line is needed in `~/.xinitrc`:
+A second method to start Cinnamon is by manually invoking man:startx[1].
+For this to work, the following line is needed in `~/.xinitrc`:
 
-[source, shell]
+[source,shell]
 ....
 % echo "exec ck-launch-session cinnamon-session" > ~/.xinitrc
 ....
@@ -447,14 +477,16 @@ A second method to start Cinnamon is by manually invoking man:startx[1]. For thi
 [[lxqt-environment]]
 === LXQT
 
-LXQt is an advanced, easy-to-use, and fast desktop environment based on Qt technologies. It has been tailored for users who value simplicity, speed, and an intuitive interface. Unlike most desktop environments, LXQt also works fine with less powerful machines.
+LXQt is an advanced, easy-to-use, and fast desktop environment based on Qt technologies.
+It has been tailored for users who value simplicity, speed, and an intuitive interface.
+Unlike most desktop environments, LXQt also works fine with less powerful machines.
 
 [[lxqt-install]]
 ==== Install LXQT
 
 To install the LXQT meta package, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install lxqt
 ....
@@ -462,7 +494,8 @@ To install the LXQT meta package, execute:
 [[lxqt-configuration]]
 ==== Configure LXQT
 
-LXQT requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this file system automatically during system startup:
+LXQT requires `/proc` to be mounted.
+Add this line to `/etc/fstab` to mount this file system automatically during system startup:
 
 [.programlisting]
 ....
@@ -470,11 +503,12 @@ LXQT requires `/proc` to be mounted. Add this line to `/etc/fstab` to mount this
 proc                    /proc           procfs  rw              0       0
 ....
 
-LXQT uses man:dbus-daemon[1] for a message bus and hardware abstraction. This application is automatically installed as a dependency of LXQT.
+LXQT uses man:dbus-daemon[1] for a message bus and hardware abstraction.
+This application is automatically installed as a dependency of LXQT.
 
 Enable D-BUS in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc dbus_enable="YES"
 ....
@@ -482,36 +516,38 @@ Enable D-BUS in `/etc/rc.conf` to start at system boot:
 [[lxqt-start]]
 ==== Start LXQT
 
-The preferred LXQT display manager is package:x11/sddm[]. To install package:x11/sddm[], execute:
+The preferred LXQT display manager is package:x11/sddm[].
+To install package:x11/sddm[], execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install sddm
 ....
 
 Enable SDDM service in `/etc/rc.conf` to start at system boot:
 
-[source, shell]
+[source,shell]
 ....
 # sysrc sddm_enable="YES"
 ....
 
 The keyboard language can be set in SDDM by running the following command (for example, for Spanish):
 
-[source, shell]
+[source,shell]
 ....
 # sysrc sddm_lang="es_ES"
 ....
 
-A second method to start LXQT is by manually invoking man:startx[1]. For this to work, the following line is needed in `~/.xinitrc`:
+A second method to start LXQT is by manually invoking man:startx[1].
+For this to work, the following line is needed in `~/.xinitrc`:
 
-[source, shell]
+[source,shell]
 ....
 % echo "exec ck-launch-session startlxqt" > ~/.xinitrc
 ....
 
 [[desktop-browsers]]
-== 브라우저
+== Browsers
 
 This section describes how to install and configure some popular web browsers on a FreeBSD system, from full web browsers with high resource consumption to command line web browsers with reduced resource usage.
 
@@ -575,18 +611,19 @@ This section describes how to install and configure some popular web browsers on
 [[firefox]]
 === Firefox
 
-Firefox는 표준 준수 HTML 디스플레이 엔진, 탭 브라우징, 팝업 차단, 확장 기능, 향상된 보안 등의 기능을 갖춘 오픈 소스 브라우저입니다. Firefox는 Mozilla 코드베이스를 기반으로 합니다.
+Firefox is an open source browser that features a standards-compliant HTML display engine, tabbed browsing, popup blocking, extensions, improved security, and more.
+Firefox is based on the Mozilla codebase.
 
 To install the package of the latest release version of Firefox, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install firefox
 ....
 
 To instead install Firefox Extended Support Release (ESR) version, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install firefox-esr
 ....
@@ -594,28 +631,31 @@ To instead install Firefox Extended Support Release (ESR) version, execute:
 [[chromium]]
 === Chromium
 
-크로미움(Chromium)은 더 안전하고 빠르며 안정적인 웹 브라우징 환경을 구축하는 것을 목표로 하는 오픈소스 브라우저 프로젝트입니다. 크로미움은 탭 브라우징, 팝업 차단, 확장 기능 등을 제공합니다. 크로미움은 구글 크롬 웹 브라우저의 기반이 되는 오픈소스 프로젝트입니다.
+Chromium is an open source browser project that aims to build a safer, faster, and more stable web browsing experience.
+Chromium features tabbed browsing, popup blocking, extensions, and much more.
+Chromium is the open source project upon which the Google Chrome web browser is based.
 
 To install Chromium, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install chromium
 ....
 
 [NOTE]
 ====
-Chromium의 실행 파일은 [.filename]#/usr/local/bin/chrome#이 아니라 [.filename]#/usr/local/bin/chromium#입니다.
+The executable for Chromium is [.filename]#/usr/local/bin/chrome#, not [.filename]#/usr/local/bin/chromium#.
 ====
 
 [[iridium]]
 === Iridium browser
 
-Iridium is a free, open, and libre browser modification of the Chromium code base, with privacy being enhanced in several key areas. Automatic transmission of partial queries, keywords, metrics to central services is inhibited and only occurs with consent.
+Iridium is a free, open, and libre browser modification of the Chromium code base, with privacy being enhanced in several key areas.
+Automatic transmission of partial queries, keywords, metrics to central services is inhibited and only occurs with consent.
 
 To install Iridium, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install iridium
 ....
@@ -623,11 +663,15 @@ To install Iridium, execute:
 [[falkon]]
 === Falkon
 
-Falkon is a new-ish and very fast QtWebEngine browser. It aims to be a lightweight web browser available on all major platforms. Falkon has all standard functions you expect from a web browser. It includes bookmarks, history (both also in sidebar) and tabs. Beyond that, you block ads with a builtin AdBlock plugin, block Flash content with Click2Flash and edit the local CA Certificates database with an SSL Manager.
+Falkon is a new-ish and very fast QtWebEngine browser.
+It aims to be a lightweight web browser available on all major platforms.
+Falkon has all standard functions you expect from a web browser.
+It includes bookmarks, history (both also in sidebar) and tabs.
+Beyond that, you block ads with a builtin AdBlock plugin, block Flash content with Click2Flash and edit the local CA Certificates database with an SSL Manager.
 
 To install Falkon, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install falkon
 ....
@@ -635,11 +679,12 @@ To install Falkon, execute:
 [[konqueror]]
 === Konqueror
 
-Konqueror is more than a web browser as it is also a file manager and a multimedia viewer. It supports WebKit, a rendering engine used by many modern browsers including Chromium, as well as its own KHTML engine.
+Konqueror is more than a web browser as it is also a file manager and a multimedia viewer.
+It supports WebKit, a rendering engine used by many modern browsers including Chromium, as well as its own KHTML engine.
 
 To install Konqueror, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install konqueror
 ....
@@ -651,7 +696,7 @@ Gnome Web (Epiphany) is a web browser designed to be as lightweight and fast as 
 
 To install Gnome Web (Epiphany), execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install epiphany
 ....
@@ -659,13 +704,14 @@ To install Gnome Web (Epiphany), execute:
 [[qutebrowser]]
 === qutebrowser
 
-Qutebrowser is a keyboard-focused browser with a minimal GUI. It is based on Python and PyQt5 and free software, licensed under the GPL.
+Qutebrowser is a keyboard-focused browser with a minimal GUI.
+It is based on Python and PyQt5 and free software, licensed under the GPL.
 // What are these and how does this information help in this context?
 It was inspired by other browsers/addons like dwb and Vimperator/Pentadactyl.
 
 To install qutebrowser, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install qutebrowser
 ....
@@ -673,11 +719,12 @@ To install qutebrowser, execute:
 [[dillo]]
 === Dillo
 
-Dillo aims to be a multiplatform alternative browser that is small, stable, developer-friendly, usable, fast, and extensible. This new, experimental version of Dillo is based upon FLTK toolkit, rather than GTK1, and has been substantially rewritten.
+Dillo aims to be a multiplatform alternative browser that is small, stable, developer-friendly, usable, fast, and extensible.
+This new, experimental version of Dillo is based upon FLTK toolkit, rather than GTK1, and has been substantially rewritten.
 
 To install Dillo, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install dillo2
 ....
@@ -689,7 +736,7 @@ A lynx-like WWW browser with text and graphics modes with many features like dis
 
 To install Links, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install links
 ....
@@ -701,7 +748,7 @@ w3m is a pager/text-based web browser. It is a similar application to Lynx, but 
 
 To install w3m, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install w3m
 ....
@@ -756,11 +803,12 @@ This section describes how to install and configure some popular development too
 [[vs-code]]
 === Visual Studio Code
 
-Visual Studio Code is a type of tool that combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle. It provides comprehensive editing and debugging support, an extensibility model, and lightweight integration with existing tools.
+Visual Studio Code is a type of tool that combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle.
+It provides comprehensive editing and debugging support, an extensibility model, and lightweight integration with existing tools.
 
 To install Visual Studio Code, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install vscode
 ....
@@ -768,7 +816,8 @@ To install Visual Studio Code, execute:
 [[qt-creator]]
 === Qt Creator
 
-Qt Creator is a cross-platform IDE (integrated development environment) tailored to the needs of Qt developers. Functionalities included with Qt Creator are:
+Qt Creator is a cross-platform IDE (integrated development environment) tailored to the needs of Qt developers.
+Functionalities included with Qt Creator are:
 
 * code editor with C++, QML and ECMAscript support;
 * rapid code navigation tools;
@@ -779,7 +828,7 @@ Qt Creator is a cross-platform IDE (integrated development environment) tailored
 
 To install Qt Creator, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install qtcreator
 ....
@@ -787,11 +836,12 @@ To install Qt Creator, execute:
 [[kdevelop]]
 === kdevelop
 
-Open source, feature-full, plugin extensible IDE for C/C++ and other programming languages. It is based on KDevPlatform and the KDE and Qt libraries, and it has been under development since 1998.
+Open source, feature-full, plugin extensible IDE for C/C++ and other programming languages.
+It is based on KDevPlatform and the KDE and Qt libraries, and it has been under development since 1998.
 
 To install kdevelop, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install kdevelop
 ....
@@ -799,11 +849,13 @@ To install kdevelop, execute:
 [[eclipse]]
 === Eclipse IDE
 
-The Eclipse Platform is an open extensible IDE for anything and yet nothing in particular. The Eclipse Platform provides building blocks and a foundation for constructing and running integrated software-development tools. The Eclipse Platform allows tool builders to independently develop tools that integrate with other people's tools.
+The Eclipse Platform is an open extensible IDE for anything and yet nothing in particular.
+The Eclipse Platform provides building blocks and a foundation for constructing and running integrated software-development tools. 
+The Eclipse Platform allows tool builders to independently develop tools that integrate with other people's tools.
 
 To install Eclipse IDE, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install eclipse
 ....
@@ -811,13 +863,16 @@ To install Eclipse IDE, execute:
 [[vim]]
 === Vim
 
-Vim is a highly configurable text editor built to enable efficient text editing. It is an improved version of the vi editor distributed with most UNIX systems.
+Vim is a highly configurable text editor built to enable efficient text editing.
+It is an improved version of the vi editor distributed with most UNIX systems.
 
-Vim is often called a "programmer's editor," and so useful for programming that many consider it an entire IDE. It's not just for programmers, though. Vim is perfect for all kinds of text editing, from composing email to editing configuration files.
+Vim is often called a "programmer's editor," and so useful for programming that many consider it an entire IDE.
+It's not just for programmers, though.
+Vim is perfect for all kinds of text editing, from composing email to editing configuration files.
 
 To install Vim, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install vim
 ....
@@ -825,11 +880,13 @@ To install Vim, execute:
 [[neovim]]
 === Neovim
 
-Neovim is an aggressive refactor of package:editors/vim[]. It represents a complete overhaul of the codebase with many sanity improvements, including sensible defaults, a built-in terminal emulator, asynchronous plugin architecture, and powerful APIs designed for speed and extensibility. It retains full compatibility with almost all Vim plugins and scripts.
+Neovim is an aggressive refactor of package:editors/vim[].
+It represents a complete overhaul of the codebase with many sanity improvements, including sensible defaults, a built-in terminal emulator, asynchronous plugin architecture, and powerful APIs designed for speed and extensibility.
+It retains full compatibility with almost all Vim plugins and scripts.
 
 To install Neovim, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install neovim
 ....
@@ -837,11 +894,12 @@ To install Neovim, execute:
 [[gnu-emacs]]
 === GNU Emacs
 
-GNU Emacs is an extensible, customizable, free/libre text editor. At its core is an interpreter for Emacs Lisp, a dialect of the Lisp programming language with extensions to support text editing.
+GNU Emacs is an extensible, customizable, free/libre text editor.
+At its core is an interpreter for Emacs Lisp, a dialect of the Lisp programming language with extensions to support text editing.
 
 To install GNU Emacs, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install emacs
 ....
@@ -849,9 +907,11 @@ To install GNU Emacs, execute:
 [[desktop-productivity]]
 == Desktop office productivity
 
-When it comes to productivity, users often look for an office suite or an easy-to-use word processor. While some desktop environments like <<kde-environment, KDE Plasma>> provide an office suite, there is no default productivity package. Several office suites and graphical word processors are available for FreeBSD, regardless of the installed desktop environments.
+When it comes to productivity, users often look for an office suite or an easy-to-use word processor.
+While some desktop environments like <<kde-environment, KDE Plasma>> provide an office suite, there is no default productivity package.
+Several office suites and graphical word processors are available for FreeBSD, regardless of the installed desktop environments.
 
-이 섹션에서는 다음과 같은 인기 있는 생산성 소프트웨어를 설치하는 방법을 설명하고 해당 애플리케이션이 리소스를 많이 사용하거나, 포트에서 컴파일하는 데 시간이 걸리거나, 주요 종속성이 있는지를 알려줍니다.
+This section demonstrates how to install the following popular productivity software and indicates if the application is resource-heavy, takes time to compile from ports, or has any major dependencies.
 
 .Supported Desktop office productivity suites
 [options="header", cols="1,1,1,1"]
@@ -878,18 +938,24 @@ When it comes to productivity, users often look for an office suite or an easy-t
 [[libreoffice]]
 === LibreOffice
 
-LibreOffice is a free software office suite developed by http://www.documentfoundation.org/[The Document Foundation]. It is compatible with other major office suites and available on a variety of platforms. It is a rebranded fork of Apache OpenOffice and includes applications found in a complete office productivity suite: a word processor, spreadsheet, presentation manager, drawing program, database management program, and a tool for creating and editing mathematical formulæ. It is available in a number of different languages and internationalization has been extended to interfaces, spell checkers, and dictionaries. More information about LibreOffice can be found at http://www.libreoffice.org/[libreoffice.org].
+LibreOffice is a free software office suite developed by http://www.documentfoundation.org/[The Document Foundation].
+It is compatible with other major office suites and available on a variety of platforms.
+It is a rebranded fork of Apache OpenOffice and includes applications found in a complete office productivity suite: a word processor, spreadsheet, presentation manager, drawing program, database management program, and a tool for creating and editing mathematical formulæ.
+It is available in a number of different languages and internationalization has been extended to interfaces, spell checkers, and dictionaries.
+More information about LibreOffice can be found at http://www.libreoffice.org/[libreoffice.org].
 
 To install LibreOffice, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install libreoffice
 ....
 
-The LibreOffice package comes by default only in English. To have a localized version of LibreOffice it is necessary to install a language pack. For example, for the version localized in Spanish, it is necessary to install the package package:editors/libreoffice-es[] with the command:
+The LibreOffice package comes by default only in English.
+To have a localized version of LibreOffice it is necessary to install a language pack.
+For example, for the version localized in Spanish, it is necessary to install the package package:editors/libreoffice-es[] with the command:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install libreoffice-es
 ....
@@ -897,11 +963,13 @@ The LibreOffice package comes by default only in English. To have a localized ve
 [[calligra]]
 === Calligra
 
-The KDE Plasma desktop environment includes an office suite which can be installed separately from KDE Plasma. Calligra includes standard components that can be found in other office suites. Words is the word processor, Sheets is the spreadsheet program, Stage manages slide presentations, and Karbon is used to draw graphical documents.
+The KDE Plasma desktop environment includes an office suite which can be installed separately from KDE Plasma.
+Calligra includes standard components that can be found in other office suites.
+Words is the word processor, Sheets is the spreadsheet program, Stage manages slide presentations, and Karbon is used to draw graphical documents.
 
 To install Calligra, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install calligra
 ....
@@ -909,21 +977,23 @@ To install Calligra, execute:
 [[abiword]]
 === AbiWord
 
-AbiWord는 Microsoft(R) Word와 모양과 느낌이 비슷한 무료 워드 프로세싱 프로그램입니다. 빠르고 다양한 기능이 포함되어 있으며 사용자 친화적입니다.
+AbiWord is a free word processing program similar in look and feel to Microsoft(R) Word.
+It is fast, contains many features, and is user-friendly.
 
-AbiWord는 Microsoft(R) [.filename]#.rtf#와 같은 일부 독점 형식을 포함하여 다양한 파일 형식을 가져오거나 내보낼 수 있습니다.
+AbiWord can import or export many file formats, including some proprietary ones like Microsoft(R) [.filename]#.rtf#.
 
 To install AbiWord, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install abiword
 ....
 
 [[desktop-viewers]]
-== 도큐먼트 뷰어
+== Document Viewers
 
-UNIX(R)의 등장 이후 일부 새로운 문서 형식이 인기를 얻고 있으며, 이러한 형식에 필요한 뷰어가 기본 시스템에서 제공되지 않을 수 있습니다. 이 섹션에서는 다음 문서 뷰어를 설치하는 방법을 설명합니다:
+Some new document formats have gained popularity since the advent of UNIX(R) and the viewers they require may not be available in the base system. 
+This section demonstrates how to install the following document viewers:
 
 .Supported Document Viewers
 [options="header", cols="1,1,1,1"]
@@ -961,7 +1031,7 @@ Okular combines excellent functionality with the versatility of supporting diffe
 
 To install Okular, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install okular
 ....
@@ -969,11 +1039,13 @@ To install Okular, execute:
 [[evince]]
 === Evince
 
-Evince is a document viewer for multiple document formats including PDF and Postscript. Part of the GNOME project. The goal of evince is to replace document viewers such as ggv and gpdf with a single, simple application.
+Evince is a document viewer for multiple document formats including PDF and Postscript.
+Part of the GNOME project.
+The goal of evince is to replace document viewers such as ggv and gpdf with a single, simple application.
 
 To install Evince, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install evince
 ....
@@ -981,11 +1053,12 @@ To install Evince, execute:
 [[epdfview]]
 === ePDFView
 
-ePDFView is a lightweight PDF document viewer that only uses the Gtk+ and Poppler libraries. The aim of ePDFView is to make a simple PDF document viewer, similar to Evince but without using the GNOME libraries.
+ePDFView is a lightweight PDF document viewer that only uses the Gtk+ and Poppler libraries.
+The aim of ePDFView is to make a simple PDF document viewer, similar to Evince but without using the GNOME libraries.
 
 To install ePDFView, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install epdfview
 ....
@@ -993,21 +1066,23 @@ To install ePDFView, execute:
 [[xpdf]]
 === Xpdf
 
-작은 FreeBSD PDF 뷰어를 선호하는 사용자를 위해, Xpdf는 리소스를 거의 필요로 하지 않는 가볍고 효율적인 뷰어를 제공합니다. 표준 X 글꼴을 사용하며 추가 툴킷이 필요하지 않습니다.
+For users that prefer a small FreeBSD PDF viewer, Xpdf provides a light-weight and efficient viewer which requires few resources.
+It uses the standard X fonts and does not require any additional toolkits.
 
 To install Xpdf, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install xpdf
 ....
 
 [[desktop-finance]]
-== 금융
+== Finance
 
-FreeBSD 데스크탑에서 개인 재정을 관리하기 위해 강력하고 사용하기 쉬운 몇 가지 애플리케이션을 설치할 수 있습니다. 일부는 Quicken 및 Excel에서 사용하는 형식과 같이 널리 사용되는 파일 형식과 호환됩니다.
+For managing personal finances on a FreeBSD desktop, some powerful and easy-to-use applications can be installed.
+Some are compatible with widespread file formats, such as the formats used by Quicken and Excel.
 
-이 섹션에서는 이러한 프로그램을 다룹니다:
+This section covers these programs:
 
 .Supported Finance programs
 [options="header", cols="1,1,1,1"]
@@ -1029,11 +1104,14 @@ FreeBSD 데스크탑에서 개인 재정을 관리하기 위해 강력하고 사
 [[kmymoney]]
 === KMyMoney
 
-KMyMoney는 KDE 커뮤니티에서 만든 개인 금융 애플리케이션입니다. KMyMoney는 상용 개인 재무 관리자 애플리케이션에서 볼 수 있는 중요한 기능을 제공하는 것을 목표로 합니다. 또한 사용 편의성과 적절한 이중 입력 회계 기능을 강조합니다. KMyMoney는 표준 Quicken QIF 파일에서 가져오고, 투자를 추적하고, 여러 통화를 처리하며, 다양한 보고서를 제공합니다.
+KMyMoney is a personal finance application created by the KDE community.
+KMyMoney aims to provide the important features found in commercial personal finance manager applications.
+It also highlights ease-of-use and proper double-entry accounting among its features.
+KMyMoney imports from standard Quicken QIF files, tracks investments, handles multiple currencies, and provides a wealth of reports.
 
 To install KMyMoney, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install kmymoney
 ....
@@ -1041,13 +1119,18 @@ To install KMyMoney, execute:
 [[gnucash]]
 === GnuCash
 
-GnuCash는 사용자 친화적이면서도 강력한 애플리케이션을 최종 사용자에게 제공하기 위한 GNOME의 노력의 일환입니다. GnuCash는 수입과 지출, 은행 계좌, 주식을 추적하는 데 사용할 수 있습니다. 전문성을 유지하면서도 직관적인 인터페이스가 특징입니다.
+GnuCash is part of the GNOME effort to provide user-friendly, yet powerful, applications to end-users.
+GnuCash can be used to keep track of income and expenses, bank accounts, and stocks.
+It features an intuitive interface while remaining professional.
 
-GnuCash는 스마트 레지스터, 계층적 계정 시스템, 다양한 키보드 가속기 및 자동 완성 방법을 제공합니다. 단일 트랜잭션을 여러 개의 세부 트랜잭션으로 분할할 수 있습니다. GnuCash는 Quicken QIF 파일을 가져오고 병합할 수 있습니다. 또한 대부분의 국제 날짜 및 통화 형식을 처리합니다.
+GnuCash provides a smart register, a hierarchical system of accounts, and many keyboard accelerators and auto-completion methods.
+It can split a single transaction into several more detailed pieces.
+GnuCash can import and merge Quicken QIF files.
+It also handles most international date and currency formats.
 
 To install GnuCash, execute:
 
-[source, shell]
+[source,shell]
 ....
 # pkg install gnucash
 ....

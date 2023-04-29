@@ -85,8 +85,7 @@ endif::[]
 
 [source, shell, subs="macros"]
 ....
-대신 부팅시 드라이버로 로드를 하려면
-man:loader.conf[5]에 다음 명령줄을 추가하세요:
+또는 부팅할 때 드라이버를 모듈로 로드하려면, man:loader.conf[5]의 다음 줄을 추가합니다:
 
     if_ath_load="YES"
 ....
